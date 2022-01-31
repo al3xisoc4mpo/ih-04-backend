@@ -26,6 +26,19 @@ const app = express();
 // SI ESTAS EN LOCAL VALE UNA COSA, EN REMOTO VALE OTRA
 require("dotenv").config();
 
+// ACTIVA LA CARPETA PUBLICA DEL PROYECTO
+app.use(express.static("public"));
+
+// ESTABLECER VISTAS
+// LOCAL: __dirname vale http://localhost:PORT
+// REMOTO: __dirname vale https://alexisocampo-ih-04-backend.herokuapp.com/
+// DECIR DONDE ESTA LA CARPETA DE VISTAS
+app.set("views", __dirname + "/views");
+
+// INDICAR QUE MOTO DE TEMPLATE VAMOS A USAR
+// HANDLEBARS - ES UN MOTO QUE PERMITE MANEJAR LOGICA DENTRO DE ARCHIVOS HTML
+app.set("view engine", "hbs");
+
 // 3. RUTAS
 app.use("/", require("./routes/index"));
 
